@@ -330,7 +330,6 @@ export default function App() {
     });
 
     const refs = useRef<Map<string, HTMLInputElement>>(new Map());
-    const [addCount, setAddCount] = useState<number>(1);
     const [clearArmed, setClearArmed] = useState(false);
     const clearTimerRef = useRef<number | null>(null);
     const skipPersistRef = useRef(false);
@@ -482,12 +481,7 @@ export default function App() {
                             <div className="value">{total.toFixed(2)}</div>
                         </div>
                         <div className="controls">
-                            <select className="select" value={addCount} onChange={(e) => setAddCount(Number(e.target.value))}>
-                                {[1, 2, 3, 5, 10].map((k) => (
-                                    <option key={k} value={k}>{k}행</option>
-                                ))}
-                            </select>
-                            <button className="btn btnPrimary" onClick={() => setRows((prev) => [...prev, ...Array.from({ length: addCount }, () => makeRow())])}>행 추가</button>
+                            <button className="btn btnPrimary" onClick={() => setRows((prev) => [...prev, makeRow()])}>행 추가</button>
                             <button className="btn" onClick={clearAll} style={clearArmed ? { borderColor: '#ef4444', color: '#ef4444' } : {}}>
                                 {clearArmed ? "초기화 확인" : "초기화"}
                             </button>
@@ -617,7 +611,7 @@ export default function App() {
                                                     <td className="td"></td>
                                                     <td className="td">
                                                         <input
-                                                            className="input main-input"
+                                                            className="input post-input"
                                                             type="text"
                                                             inputMode="decimal"
                                                             value={r.extraPost.w}
@@ -630,7 +624,7 @@ export default function App() {
                                                     </td>
                                                     <td className="td">
                                                         <input
-                                                            className="input main-input"
+                                                            className="input post-input"
                                                             type="text"
                                                             inputMode="decimal"
                                                             value={r.extraPost.h}
