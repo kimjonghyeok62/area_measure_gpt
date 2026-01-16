@@ -27,6 +27,7 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.5;
+  font-size: 18px;
 }
 
 .container {
@@ -40,7 +41,7 @@ body {
 }
 
 .h1 {
-  font-size: 1.75rem;
+  font-size: 2rem;
   font-weight: 800;
   margin: 0;
   word-break: keep-all;
@@ -48,7 +49,7 @@ body {
 
 .p {
   margin: 8px 0 0 0;
-  font-size: 1rem;
+  font-size: 1.125rem;
   color: var(--muted);
   line-height: 1.45;
   word-break: keep-all;
@@ -148,7 +149,7 @@ body {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  min-width: 650px; /* 테이블 최소 너비 설정으로 모바일 스크롤 유도 */
+  min-width: 550px; /* 테이블 최소 너비 설정으로 모바일 스크롤 유도 */
 }
 
 .th {
@@ -172,7 +173,7 @@ body {
 
 .input {
   width: 100%;
-  max-width: 80px;
+  max-width: 60px;
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 8px 10px;
@@ -189,7 +190,7 @@ body {
 
 .readonly {
   width: 100%;
-  min-width: 80px;
+  min-width: 60px;
   text-align: right;
   border: 1px solid var(--border);
   border-radius: 8px;
