@@ -488,11 +488,11 @@ export default function App() {
                                 <tr>
                                     <th className="th" style={{ width: 40, textAlign: 'center' }}>#</th>
                                     <th className="th" style={{ width: 50, textAlign: 'center' }}>펼침</th>
-                                    <th className="th">강의실 가로(m)</th>
-                                    <th className="th">강의실 세로(m)</th>
-                                    <th className="th">기둥 가로(m)</th>
-                                    <th className="th">기둥 세로(m)</th>
-                                    <th className="th" style={{ width: 120, textAlign: 'right' }}>합계(㎡)</th>
+                                    <th className="th">강의실<br/>가로</th>
+                                    <th className="th">강의실<br/>세로</th>
+                                    <th className="th">기둥<br/>가로</th>
+                                    <th className="th">기둥<br/>세로</th>
+                                    <th className="th" style={{ width: 100, textAlign: 'right' }}>합계<br/>(㎡)</th>
                                 </tr>
                             </thead>
                             <tbody>
