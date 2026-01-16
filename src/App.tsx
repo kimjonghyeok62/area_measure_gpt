@@ -234,11 +234,13 @@ body {
 
 .main-input {
   border-color: green;
+  border-width: 2px;
   font-weight: bold;
 }
 
 .post-input {
   border-color: gray;
+  border-width: 2px;
   font-weight: normal;
 }
 
@@ -268,14 +270,6 @@ body {
 }
 
 /* 모바일 전용 행 스타일 */
-.main-row {
-  background-color: #d4edda; /* light green */
-}
-
-.post-row {
-  background-color: #f8f9fa; /* light gray */
-}
-
 .extra-row-bg {
   background-color: #d4edda; /* light green for expanded */
 }
@@ -518,7 +512,7 @@ export default function App() {
                             <tbody>
                                 {rows.map((r, ri) => (
                                     <React.Fragment key={ri}>
-                                        <tr className="main-row">
+                                        <tr>
                                             <td className="td" rowSpan={2} style={{ textAlign: 'center', color: 'var(--muted)', fontSize: '0.875rem' }}>{ri + 1}</td>
                                             <td className="td">
                                                 <input
@@ -555,7 +549,7 @@ export default function App() {
                                                 </button>
                                             </td>
                                         </tr>
-                                        <tr className="post-row">
+                                        <tr>
                                             <td className="td">
                                                 <input
                                                     className="input post-input"
@@ -587,7 +581,7 @@ export default function App() {
                                             <>
                                                 <tr className="extra-row-bg">
                                                     <td className="td" />
-                                                    <td className="td" style={{ textAlign: 'center', color: 'var(--muted)' }}>+</td>
+                                                    <td className="td"></td>
                                                     <td className="td">
                                                         <input
                                                             className="input main-input"
@@ -619,7 +613,7 @@ export default function App() {
                                                 </tr>
                                                 <tr className="extra-row-bg">
                                                     <td className="td" />
-                                                    <td className="td" style={{ textAlign: 'center', color: 'var(--muted)' }}>+</td>
+                                                    <td className="td"></td>
                                                     <td className="td">
                                                         <input
                                                             className="input main-input"
