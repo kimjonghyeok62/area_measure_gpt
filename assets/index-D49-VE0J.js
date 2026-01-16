@@ -40,7 +40,7 @@ body {
 }
 
 .h1 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 800;
   margin: 0;
   word-break: keep-all;
@@ -48,7 +48,7 @@ body {
 
 .p {
   margin: 8px 0 0 0;
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: var(--muted);
   line-height: 1.45;
   word-break: keep-all;
@@ -79,6 +79,15 @@ body {
   }
 }
 
+@media (max-width: 639px) {
+  .container {
+    padding: 8px;
+  }
+  .table {
+    min-width: 600px;
+  }
+}
+
 .total-box .label {
   font-size: 0.75rem;
   font-weight: 700;
@@ -102,14 +111,15 @@ body {
   border: 1px solid var(--border);
   background: #fff;
   border-radius: 12px;
-  padding: 10px 16px;
-  font-size: 0.875rem;
+  padding: 10px 20px;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-width: 100px;
 }
 
 .btn:active { transform: scale(0.98); }
@@ -125,7 +135,7 @@ body {
   background: #fff;
   border-radius: 12px;
   padding: 10px 12px;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 
@@ -138,7 +148,7 @@ body {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  min-width: 700px; /* 테이블 최소 너비 설정으로 모바일 스크롤 유도 */
+  min-width: 650px; /* 테이블 최소 너비 설정으로 모바일 스크롤 유도 */
 }
 
 .th {
@@ -148,7 +158,7 @@ body {
   border-bottom: 1px solid var(--border);
   text-align: left;
   padding: 12px;
-  font-size: 0.75rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--muted);
   white-space: nowrap;
@@ -162,11 +172,11 @@ body {
 
 .input {
   width: 100%;
-  max-width: 90px;
+  max-width: 80px;
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 8px 10px;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-variant-numeric: tabular-nums;
   transition: border-color 0.2s;
 }
@@ -179,7 +189,7 @@ body {
 
 .readonly {
   width: 100%;
-  min-width: 90px;
+  min-width: 80px;
   text-align: right;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -199,7 +209,7 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 }
 
 /* 모바일 전용 행 스타일 */
@@ -218,13 +228,13 @@ body {
 }
 
 .footer-label {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: 700;
   color: var(--muted);
 }
 
 .footer-value {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 900;
   font-variant-numeric: tabular-nums;
 }
@@ -240,4 +250,4 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
-`;function vv(){const[A,W]=Ht.useState(()=>{const N=localStorage.getItem(vi);if(N)try{const D=JSON.parse(N);if(D&&Array.isArray(D.rows)&&D.rows.length>0)return D.rows.map(p=>({main:p.main??{...Aa},post:p.post??{...Aa},extraMain:p.extraMain??{...Aa},extraPost:p.extraPost??{...Aa},expanded:!!p.expanded}))}catch{}return Array.from({length:10},()=>Qn())}),L=Ht.useRef(new Map),[h,V]=Ht.useState(1),[k,yl]=Ht.useState(!1),Sl=Ht.useRef(null),H=Ht.useRef(!1),E=Ht.useMemo(()=>A.map(N=>mv(N)),[A]),P=Ht.useMemo(()=>ri(E.reduce((N,D)=>N+D,0)),[E]);Ht.useEffect(()=>{if(H.current){H.current=!1;return}const N=window.setTimeout(()=>{const D={rows:A};localStorage.setItem(vi,JSON.stringify(D))},250);return()=>window.clearTimeout(N)},[A]);const C=(N,D)=>{const p=L.current.get(`${N}:${D}`);p&&p.focus()},ml=N=>{W(D=>D.length>=N?D:[...D,...Array.from({length:N-D.length},()=>Qn())])},Zl=(N,D)=>{const p=["main.w","main.h","post.w","post.h"],G=["main.w","main.h","post.w","post.h","extraMain.w","extraMain.h","extraPost.w","extraPost.h"],vl=A[N]?.expanded?G:p,Ol=vl.indexOf(D);if(Ol>=0&&Ol<vl.length-1)return C(N,vl[Ol+1]);const bl=D==="post.h"&&!A[N]?.expanded,El=D==="extraPost.h"&&!!A[N]?.expanded;if(bl||El){const at=N+1;ml(at+1),setTimeout(()=>C(at,"main.w"),0)}},jl=(N,D,p,G)=>{D!=="expanded"&&W(vl=>{const Ol=[...vl],bl={...Ol[N]};return bl[D]={...bl[D],[p]:G},Ol[N]=bl,Ol})},Hl=(N,D,p)=>{const G=N.target.value;if(G===""){const[bl,El]=p.split(".");jl(D,bl,El,"");return}if(!/^[0-9]*(?:\.[0-9]{0,2})?$/.test(G))return;const[vl,Ol]=p.split(".");jl(D,vl,Ol,G),/^[0-9]+\.[0-9]{2}$/.test(G)&&Zl(D,p)},tt=(N,D)=>{const p=G=>{const vl=hi(G);return vl==null?G:ri(vl).toFixed(2)};W(G=>{const vl=[...G],Ol={...vl[N]},[bl,El]=D.split(".");if(bl!=="expanded"){const at=Ol[bl];Ol[bl]={...at,[El]:p(at[El])}}return vl[N]=Ol,vl})},Vl=(N,D,p)=>{N.key==="Enter"&&(N.preventDefault(),tt(D,p),Zl(D,p))},Mt=N=>{W(D=>{const p=[...D];return p[N]={...p[N],expanded:!p[N].expanded},p})},Rl=()=>{Sl.current&&(window.clearTimeout(Sl.current),Sl.current=null),yl(!1),H.current=!0,localStorage.removeItem(vi),W(Array.from({length:10},()=>Qn())),setTimeout(()=>{const N=L.current.get("0:main.w");N&&N.focus()},0)},wl=()=>{if(!k){yl(!0),Sl.current&&window.clearTimeout(Sl.current),Sl.current=window.setTimeout(()=>{yl(!1),Sl.current=null},3e3);return}Rl()};return j.jsxs(j.Fragment,{children:[j.jsx("style",{children:yv}),j.jsxs("div",{className:"container",children:[j.jsxs("header",{className:"header",children:[j.jsx("h1",{className:"h1",children:"강의실 면적 자동 계산"}),j.jsx("p",{className:"p",children:"대부분은 한 행만 입력하시면 됩니다. 특이한 경우만 ▸ 로 2줄 입력을 펼치세요."})]}),j.jsxs("div",{className:"card",children:[j.jsxs("div",{className:"summary-bar",children:[j.jsxs("div",{className:"total-box",children:[j.jsx("div",{className:"label",children:"전체 합계(㎡)"}),j.jsx("div",{className:"value",children:P.toFixed(2)})]}),j.jsxs("div",{className:"controls",children:[j.jsx("select",{className:"select",value:h,onChange:N=>V(Number(N.target.value)),children:[1,2,3,5,10].map(N=>j.jsxs("option",{value:N,children:[N,"행"]},N))}),j.jsx("button",{className:"btn btnPrimary",onClick:()=>W(N=>[...N,...Array.from({length:h},()=>Qn())]),children:"행 추가"}),j.jsx("button",{className:"btn",onClick:wl,style:k?{borderColor:"#ef4444",color:"#ef4444"}:{},children:k?"초기화 확인":"전체 초기화"})]})]}),j.jsx("div",{className:"table-container",children:j.jsxs("table",{className:"table",children:[j.jsx("thead",{children:j.jsxs("tr",{children:[j.jsx("th",{className:"th",style:{width:40,textAlign:"center"},children:"#"}),j.jsx("th",{className:"th",style:{width:50,textAlign:"center"},children:"펼침"}),j.jsx("th",{className:"th",children:"강의실 가로(m)"}),j.jsx("th",{className:"th",children:"강의실 세로(m)"}),j.jsx("th",{className:"th",children:"기둥 가로(m)"}),j.jsx("th",{className:"th",children:"기둥 세로(m)"}),j.jsx("th",{className:"th",style:{width:120,textAlign:"right"},children:"합계(㎡)"})]})}),j.jsx("tbody",{children:A.map((N,D)=>j.jsxs(xo.Fragment,{children:[j.jsxs("tr",{children:[j.jsx("td",{className:"td",style:{textAlign:"center",color:"var(--muted)",fontSize:"0.75rem"},children:D+1}),j.jsx("td",{className:"td",style:{textAlign:"center"},children:j.jsx("button",{className:"chev-btn",onClick:()=>Mt(D),"aria-label":"행 펼치기/접기",children:N.expanded?"▾":"▸"})}),["main.w","main.h","post.w","post.h"].map(p=>j.jsx("td",{className:"td",children:j.jsx("input",{className:"input",type:"text",inputMode:"decimal",value:N[p.split(".")[0]][p.split(".")[1]],onChange:G=>Hl(G,D,p),onBlur:()=>tt(D,p),onKeyDown:G=>Vl(G,D,p),ref:G=>{G&&L.current.set(`${D}:${p}`,G)},placeholder:"0.00"})},p)),j.jsx("td",{className:"td",style:{textAlign:"right"},children:j.jsx("div",{className:"readonly",children:E[D].toFixed(2)})})]}),N.expanded&&j.jsxs("tr",{className:"extra-row-bg",children:[j.jsx("td",{className:"td"}),j.jsx("td",{className:"td",style:{textAlign:"center",color:"var(--muted)"},children:"+"}),["extraMain.w","extraMain.h","extraPost.w","extraPost.h"].map(p=>j.jsx("td",{className:"td",children:j.jsx("input",{className:"input",type:"text",inputMode:"decimal",value:N[p.split(".")[0]][p.split(".")[1]],onChange:G=>Hl(G,D,p),onBlur:()=>tt(D,p),onKeyDown:G=>Vl(G,D,p),ref:G=>{G&&L.current.set(`${D}:${p}`,G)},placeholder:"0.00"})},p)),j.jsx("td",{className:"td"})]})]},D))})]})}),j.jsxs("div",{className:"footer-bar",children:[j.jsx("span",{className:"footer-label",children:"(전체) 합계(㎡)"}),j.jsx("span",{className:"footer-value",children:P.toFixed(2)})]})]})]})]})}ov.createRoot(document.getElementById("root")).render(j.jsx(xo.StrictMode,{children:j.jsx(vv,{})}));
+`;function vv(){const[A,W]=Ht.useState(()=>{const N=localStorage.getItem(vi);if(N)try{const D=JSON.parse(N);if(D&&Array.isArray(D.rows)&&D.rows.length>0)return D.rows.map(p=>({main:p.main??{...Aa},post:p.post??{...Aa},extraMain:p.extraMain??{...Aa},extraPost:p.extraPost??{...Aa},expanded:!!p.expanded}))}catch{}return Array.from({length:10},()=>Qn())}),L=Ht.useRef(new Map),[h,V]=Ht.useState(1),[k,yl]=Ht.useState(!1),Sl=Ht.useRef(null),H=Ht.useRef(!1),E=Ht.useMemo(()=>A.map(N=>mv(N)),[A]),P=Ht.useMemo(()=>ri(E.reduce((N,D)=>N+D,0)),[E]);Ht.useEffect(()=>{if(H.current){H.current=!1;return}const N=window.setTimeout(()=>{const D={rows:A};localStorage.setItem(vi,JSON.stringify(D))},250);return()=>window.clearTimeout(N)},[A]);const C=(N,D)=>{const p=L.current.get(`${N}:${D}`);p&&p.focus()},ml=N=>{W(D=>D.length>=N?D:[...D,...Array.from({length:N-D.length},()=>Qn())])},Zl=(N,D)=>{const p=["main.w","main.h","post.w","post.h"],G=["main.w","main.h","post.w","post.h","extraMain.w","extraMain.h","extraPost.w","extraPost.h"],vl=A[N]?.expanded?G:p,Ol=vl.indexOf(D);if(Ol>=0&&Ol<vl.length-1)return C(N,vl[Ol+1]);const bl=D==="post.h"&&!A[N]?.expanded,El=D==="extraPost.h"&&!!A[N]?.expanded;if(bl||El){const at=N+1;ml(at+1),setTimeout(()=>C(at,"main.w"),0)}},jl=(N,D,p,G)=>{D!=="expanded"&&W(vl=>{const Ol=[...vl],bl={...Ol[N]};return bl[D]={...bl[D],[p]:G},Ol[N]=bl,Ol})},Hl=(N,D,p)=>{const G=N.target.value;if(G===""){const[bl,El]=p.split(".");jl(D,bl,El,"");return}if(!/^[0-9]*(?:\.[0-9]{0,2})?$/.test(G))return;const[vl,Ol]=p.split(".");jl(D,vl,Ol,G),/^[0-9]+\.[0-9]{2}$/.test(G)&&Zl(D,p)},tt=(N,D)=>{const p=G=>{const vl=hi(G);return vl==null?G:ri(vl).toFixed(2)};W(G=>{const vl=[...G],Ol={...vl[N]},[bl,El]=D.split(".");if(bl!=="expanded"){const at=Ol[bl];Ol[bl]={...at,[El]:p(at[El])}}return vl[N]=Ol,vl})},Vl=(N,D,p)=>{N.key==="Enter"&&(N.preventDefault(),tt(D,p),Zl(D,p))},Mt=N=>{W(D=>{const p=[...D];return p[N]={...p[N],expanded:!p[N].expanded},p})},Rl=()=>{Sl.current&&(window.clearTimeout(Sl.current),Sl.current=null),yl(!1),H.current=!0,localStorage.removeItem(vi),W(Array.from({length:10},()=>Qn())),setTimeout(()=>{const N=L.current.get("0:main.w");N&&N.focus()},0)},wl=()=>{if(!k){yl(!0),Sl.current&&window.clearTimeout(Sl.current),Sl.current=window.setTimeout(()=>{yl(!1),Sl.current=null},3e3);return}Rl()};return j.jsxs(j.Fragment,{children:[j.jsx("style",{children:yv}),j.jsxs("div",{className:"container",children:[j.jsxs("header",{className:"header",children:[j.jsx("h1",{className:"h1",children:"강의실 면적 자동 계산"}),j.jsx("p",{className:"p",children:"대부분은 한 행만 입력하시면 됩니다. 특이한 경우만 ▸ 로 2줄 입력을 펼치세요."})]}),j.jsxs("div",{className:"card",children:[j.jsxs("div",{className:"summary-bar",children:[j.jsxs("div",{className:"total-box",children:[j.jsx("div",{className:"label",children:"전체 합계(㎡)"}),j.jsx("div",{className:"value",children:P.toFixed(2)})]}),j.jsxs("div",{className:"controls",children:[j.jsx("select",{className:"select",value:h,onChange:N=>V(Number(N.target.value)),children:[1,2,3,5,10].map(N=>j.jsxs("option",{value:N,children:[N,"행"]},N))}),j.jsx("button",{className:"btn btnPrimary",onClick:()=>W(N=>[...N,...Array.from({length:h},()=>Qn())]),children:"행 추가"}),j.jsx("button",{className:"btn",onClick:wl,style:k?{borderColor:"#ef4444",color:"#ef4444"}:{},children:k?"초기화 확인":"초기화"})]})]}),j.jsx("div",{className:"table-container",children:j.jsxs("table",{className:"table",children:[j.jsx("thead",{children:j.jsxs("tr",{children:[j.jsx("th",{className:"th",style:{width:40,textAlign:"center"},children:"#"}),j.jsx("th",{className:"th",style:{width:50,textAlign:"center"},children:"펼침"}),j.jsx("th",{className:"th",children:"강의실 가로(m)"}),j.jsx("th",{className:"th",children:"강의실 세로(m)"}),j.jsx("th",{className:"th",children:"기둥 가로(m)"}),j.jsx("th",{className:"th",children:"기둥 세로(m)"}),j.jsx("th",{className:"th",style:{width:120,textAlign:"right"},children:"합계(㎡)"})]})}),j.jsx("tbody",{children:A.map((N,D)=>j.jsxs(xo.Fragment,{children:[j.jsxs("tr",{children:[j.jsx("td",{className:"td",style:{textAlign:"center",color:"var(--muted)",fontSize:"0.875rem"},children:D+1}),j.jsx("td",{className:"td",style:{textAlign:"center"},children:j.jsx("button",{className:"chev-btn",onClick:()=>Mt(D),"aria-label":"행 펼치기/접기",children:N.expanded?"▾":"▸"})}),["main.w","main.h","post.w","post.h"].map(p=>j.jsx("td",{className:"td",children:j.jsx("input",{className:"input",type:"text",inputMode:"decimal",value:N[p.split(".")[0]][p.split(".")[1]],onChange:G=>Hl(G,D,p),onBlur:()=>tt(D,p),onKeyDown:G=>Vl(G,D,p),ref:G=>{G&&L.current.set(`${D}:${p}`,G)},placeholder:"0.00"})},p)),j.jsx("td",{className:"td",style:{textAlign:"right"},children:j.jsx("div",{className:"readonly",children:E[D].toFixed(2)})})]}),N.expanded&&j.jsxs("tr",{className:"extra-row-bg",children:[j.jsx("td",{className:"td"}),j.jsx("td",{className:"td",style:{textAlign:"center",color:"var(--muted)"},children:"+"}),["extraMain.w","extraMain.h","extraPost.w","extraPost.h"].map(p=>j.jsx("td",{className:"td",children:j.jsx("input",{className:"input",type:"text",inputMode:"decimal",value:N[p.split(".")[0]][p.split(".")[1]],onChange:G=>Hl(G,D,p),onBlur:()=>tt(D,p),onKeyDown:G=>Vl(G,D,p),ref:G=>{G&&L.current.set(`${D}:${p}`,G)},placeholder:"0.00"})},p)),j.jsx("td",{className:"td"})]})]},D))})]})}),j.jsxs("div",{className:"footer-bar",children:[j.jsx("span",{className:"footer-label",children:"(전체) 합계(㎡)"}),j.jsx("span",{className:"footer-value",children:P.toFixed(2)})]})]})]})]})}ov.createRoot(document.getElementById("root")).render(j.jsx(xo.StrictMode,{children:j.jsx(vv,{})}));
