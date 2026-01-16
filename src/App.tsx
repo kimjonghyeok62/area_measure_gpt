@@ -217,7 +217,7 @@ body {
 
 .input {
   width: 100%;
-  max-width: 60px;
+  max-width: 70px;
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 8px 10px;
@@ -232,9 +232,19 @@ body {
   box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
 }
 
+.main-input {
+  border-color: green;
+  font-weight: bold;
+}
+
+.post-input {
+  border-color: gray;
+  font-weight: normal;
+}
+
 .readonly {
   width: 100%;
-  min-width: 60px;
+  min-width: 70px;
   text-align: right;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -258,8 +268,16 @@ body {
 }
 
 /* 모바일 전용 행 스타일 */
+.main-row {
+  background-color: #d4edda; /* light green */
+}
+
+.post-row {
+  background-color: #f8f9fa; /* light gray */
+}
+
 .extra-row-bg {
-  background-color: #fcfdfe;
+  background-color: #d4edda; /* light green for expanded */
 }
 
 .footer-bar {
@@ -486,11 +504,11 @@ export default function App() {
                         <table className="table">
                             <thead>
                                 <tr>
-                                    <th className="th" rowspan="2" style={{ width: 40, textAlign: 'center' }}>#</th>
+                                    <th className="th" rowSpan={2} style={{ width: 40, textAlign: 'center' }}>#</th>
                                     <th className="th">강의실<br/>가로</th>
                                     <th className="th">강의실<br/>세로</th>
-                                    <th className="th" rowspan="2" style={{ width: 100, textAlign: 'right' }}>합계<br/>(㎡)</th>
-                                    <th className="th" rowspan="2" style={{ width: 50, textAlign: 'center' }}>펼침</th>
+                                    <th className="th" rowSpan={2} style={{ width: 100, textAlign: 'right' }}>합계<br/>(㎡)</th>
+                                    <th className="th" rowSpan={2} style={{ width: 50, textAlign: 'center' }}>펼침</th>
                                 </tr>
                                 <tr>
                                     <th className="th">기둥<br/>가로</th>
@@ -500,11 +518,11 @@ export default function App() {
                             <tbody>
                                 {rows.map((r, ri) => (
                                     <React.Fragment key={ri}>
-                                        <tr>
-                                            <td className="td" rowspan="2" style={{ textAlign: 'center', color: 'var(--muted)', fontSize: '0.875rem' }}>{ri + 1}</td>
+                                        <tr className="main-row">
+                                            <td className="td" rowSpan={2} style={{ textAlign: 'center', color: 'var(--muted)', fontSize: '0.875rem' }}>{ri + 1}</td>
                                             <td className="td">
                                                 <input
-                                                    className="input"
+                                                    className="input main-input"
                                                     type="text"
                                                     inputMode="decimal"
                                                     value={r.main.w}
@@ -517,7 +535,7 @@ export default function App() {
                                             </td>
                                             <td className="td">
                                                 <input
-                                                    className="input"
+                                                    className="input main-input"
                                                     type="text"
                                                     inputMode="decimal"
                                                     value={r.main.h}
@@ -528,19 +546,19 @@ export default function App() {
                                                     placeholder="0.00"
                                                 />
                                             </td>
-                                            <td className="td" rowspan="2" style={{ textAlign: 'right' }}>
+                                            <td className="td" rowSpan={2} style={{ textAlign: 'right' }}>
                                                 <div className="readonly">{areas[ri].toFixed(2)}</div>
                                             </td>
-                                            <td className="td" rowspan="2" style={{ textAlign: 'center' }}>
+                                            <td className="td" rowSpan={2} style={{ textAlign: 'center' }}>
                                                 <button className="chev-btn" onClick={() => toggleExpanded(ri)} aria-label="행 펼치기/접기">
                                                     {r.expanded ? "▾" : "▸"}
                                                 </button>
                                             </td>
                                         </tr>
-                                        <tr>
+                                        <tr className="post-row">
                                             <td className="td">
                                                 <input
-                                                    className="input"
+                                                    className="input post-input"
                                                     type="text"
                                                     inputMode="decimal"
                                                     value={r.post.w}
@@ -553,7 +571,7 @@ export default function App() {
                                             </td>
                                             <td className="td">
                                                 <input
-                                                    className="input"
+                                                    className="input post-input"
                                                     type="text"
                                                     inputMode="decimal"
                                                     value={r.post.h}
@@ -572,7 +590,7 @@ export default function App() {
                                                     <td className="td" style={{ textAlign: 'center', color: 'var(--muted)' }}>+</td>
                                                     <td className="td">
                                                         <input
-                                                            className="input"
+                                                            className="input main-input"
                                                             type="text"
                                                             inputMode="decimal"
                                                             value={r.extraMain.w}
@@ -585,7 +603,7 @@ export default function App() {
                                                     </td>
                                                     <td className="td">
                                                         <input
-                                                            className="input"
+                                                            className="input main-input"
                                                             type="text"
                                                             inputMode="decimal"
                                                             value={r.extraMain.h}
@@ -604,7 +622,7 @@ export default function App() {
                                                     <td className="td" style={{ textAlign: 'center', color: 'var(--muted)' }}>+</td>
                                                     <td className="td">
                                                         <input
-                                                            className="input"
+                                                            className="input main-input"
                                                             type="text"
                                                             inputMode="decimal"
                                                             value={r.extraPost.w}
@@ -617,7 +635,7 @@ export default function App() {
                                                     </td>
                                                     <td className="td">
                                                         <input
-                                                            className="input"
+                                                            className="input main-input"
                                                             type="text"
                                                             inputMode="decimal"
                                                             value={r.extraPost.h}
