@@ -193,7 +193,7 @@ body {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  min-width: 550px; /* 테이블 최소 너비 설정으로 모바일 스크롤 유도 */
+  min-width: 450px; /* 테이블 최소 너비 설정으로 모바일 스크롤 유도 */
 }
 
 .th {
@@ -487,12 +487,12 @@ export default function App() {
                             <thead>
                                 <tr>
                                     <th className="th" style={{ width: 40, textAlign: 'center' }}>#</th>
-                                    <th className="th" style={{ width: 50, textAlign: 'center' }}>펼침</th>
                                     <th className="th">강의실<br/>가로</th>
                                     <th className="th">강의실<br/>세로</th>
                                     <th className="th">기둥<br/>가로</th>
                                     <th className="th">기둥<br/>세로</th>
                                     <th className="th" style={{ width: 100, textAlign: 'right' }}>합계<br/>(㎡)</th>
+                                    <th className="th" style={{ width: 50, textAlign: 'center' }}>펼침</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -500,11 +500,6 @@ export default function App() {
                                     <React.Fragment key={ri}>
                                         <tr>
                                             <td className="td" style={{ textAlign: 'center', color: 'var(--muted)', fontSize: '0.875rem' }}>{ri + 1}</td>
-                                            <td className="td" style={{ textAlign: 'center' }}>
-                                                <button className="chev-btn" onClick={() => toggleExpanded(ri)} aria-label="행 펼치기/접기">
-                                                    {r.expanded ? "▾" : "▸"}
-                                                </button>
-                                            </td>
                                             {(["main.w", "main.h", "post.w", "post.h"] as const).map((k) => (
                                                 <td key={k} className="td">
                                                     <input
@@ -522,6 +517,11 @@ export default function App() {
                                             ))}
                                             <td className="td" style={{ textAlign: 'right' }}>
                                                 <div className="readonly">{areas[ri].toFixed(2)}</div>
+                                            </td>
+                                            <td className="td" style={{ textAlign: 'center' }}>
+                                                <button className="chev-btn" onClick={() => toggleExpanded(ri)} aria-label="행 펼치기/접기">
+                                                    {r.expanded ? "▾" : "▸"}
+                                                </button>
                                             </td>
                                         </tr>
                                         {r.expanded && (
@@ -543,6 +543,7 @@ export default function App() {
                                                         />
                                                     </td>
                                                 ))}
+                                                <td className="td" />
                                                 <td className="td" />
                                             </tr>
                                         )}
