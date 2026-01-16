@@ -84,7 +84,7 @@ body {
 }
 
 .h1 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 800;
   margin: 0;
   word-break: keep-all;
@@ -92,7 +92,7 @@ body {
 
 .p {
   margin: 8px 0 0 0;
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: var(--muted);
   line-height: 1.45;
   word-break: keep-all;
@@ -123,6 +123,15 @@ body {
   }
 }
 
+@media (max-width: 639px) {
+  .container {
+    padding: 8px;
+  }
+  .table {
+    min-width: 600px;
+  }
+}
+
 .total-box .label {
   font-size: 0.75rem;
   font-weight: 700;
@@ -146,14 +155,15 @@ body {
   border: 1px solid var(--border);
   background: #fff;
   border-radius: 12px;
-  padding: 10px 16px;
-  font-size: 0.875rem;
+  padding: 10px 20px;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-width: 100px;
 }
 
 .btn:active { transform: scale(0.98); }
@@ -169,7 +179,7 @@ body {
   background: #fff;
   border-radius: 12px;
   padding: 10px 12px;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 
@@ -182,7 +192,7 @@ body {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  min-width: 700px; /* 테이블 최소 너비 설정으로 모바일 스크롤 유도 */
+  min-width: 650px; /* 테이블 최소 너비 설정으로 모바일 스크롤 유도 */
 }
 
 .th {
@@ -192,7 +202,7 @@ body {
   border-bottom: 1px solid var(--border);
   text-align: left;
   padding: 12px;
-  font-size: 0.75rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--muted);
   white-space: nowrap;
@@ -206,11 +216,11 @@ body {
 
 .input {
   width: 100%;
-  max-width: 90px;
+  max-width: 80px;
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 8px 10px;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-variant-numeric: tabular-nums;
   transition: border-color 0.2s;
 }
@@ -223,7 +233,7 @@ body {
 
 .readonly {
   width: 100%;
-  min-width: 90px;
+  min-width: 80px;
   text-align: right;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -243,7 +253,7 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 }
 
 /* 모바일 전용 행 스타일 */
@@ -262,13 +272,13 @@ body {
 }
 
 .footer-label {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: 700;
   color: var(--muted);
 }
 
 .footer-value {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 900;
   font-variant-numeric: tabular-nums;
 }
@@ -466,7 +476,7 @@ export default function App() {
                             </select>
                             <button className="btn btnPrimary" onClick={() => setRows((prev) => [...prev, ...Array.from({ length: addCount }, () => makeRow())])}>행 추가</button>
                             <button className="btn" onClick={clearAll} style={clearArmed ? { borderColor: '#ef4444', color: '#ef4444' } : {}}>
-                                {clearArmed ? "초기화 확인" : "전체 초기화"}
+                                {clearArmed ? "초기화 확인" : "초기화"}
                             </button>
                         </div>
                     </div>
@@ -488,7 +498,7 @@ export default function App() {
                                 {rows.map((r, ri) => (
                                     <React.Fragment key={ri}>
                                         <tr>
-                                            <td className="td" style={{ textAlign: 'center', color: 'var(--muted)', fontSize: '0.75rem' }}>{ri + 1}</td>
+                                            <td className="td" style={{ textAlign: 'center', color: 'var(--muted)', fontSize: '0.875rem' }}>{ri + 1}</td>
                                             <td className="td" style={{ textAlign: 'center' }}>
                                                 <button className="chev-btn" onClick={() => toggleExpanded(ri)} aria-label="행 펼치기/접기">
                                                     {r.expanded ? "▾" : "▸"}

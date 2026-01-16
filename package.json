@@ -10,7 +10,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
-  "homepage": "https://kimjonghyeok62.github.io/church-budget/",
+  "homepage": "https://kimjonghyeok62.github.io/area_measure_gpt/",
   "devDependencies": {
     "@types/react": "^19.2.8",
     "@types/react-dom": "^19.2.3",
