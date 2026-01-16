@@ -271,7 +271,7 @@ body {
 
 /* 모바일 전용 행 스타일 */
 .extra-row-bg {
-  background-color: #d4edda; /* light green for expanded */
+  background-color: #f8f9fa; /* light gray for expanded */
 }
 
 .footer-bar {
