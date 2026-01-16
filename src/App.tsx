@@ -513,7 +513,7 @@ export default function App() {
                                 {rows.map((r, ri) => (
                                     <React.Fragment key={ri}>
                                         <tr>
-                                            <td className="td" rowSpan={2} style={{ textAlign: 'center', color: 'var(--muted)', fontSize: '0.875rem' }}>{ri + 1}</td>
+                                            <td className="td" style={{ textAlign: 'center', color: 'var(--muted)', fontSize: '0.875rem' }}>{ri + 1}</td>
                                             <td className="td">
                                                 <input
                                                     className="input main-input"
@@ -540,16 +540,17 @@ export default function App() {
                                                     placeholder="0.00"
                                                 />
                                             </td>
-                                            <td className="td" rowSpan={2} style={{ textAlign: 'right' }}>
+                                            <td className="td" style={{ textAlign: 'right' }}>
                                                 <div className="readonly">{areas[ri].toFixed(2)}</div>
                                             </td>
-                                            <td className="td" rowSpan={2} style={{ textAlign: 'center' }}>
+                                            <td className="td" style={{ textAlign: 'center' }}>
                                                 <button className="chev-btn" onClick={() => toggleExpanded(ri)} aria-label="행 펼치기/접기">
                                                     {r.expanded ? "▾" : "▸"}
                                                 </button>
                                             </td>
                                         </tr>
                                         <tr>
+                                            <td className="td"></td>
                                             <td className="td">
                                                 <input
                                                     className="input post-input"
@@ -576,11 +577,12 @@ export default function App() {
                                                     placeholder="0.00"
                                                 />
                                             </td>
+                                            <td className="td"></td>
+                                            <td className="td"></td>
                                         </tr>
                                         {r.expanded && (
                                             <>
                                                 <tr className="extra-row-bg">
-                                                    <td className="td" />
                                                     <td className="td"></td>
                                                     <td className="td">
                                                         <input
@@ -608,11 +610,10 @@ export default function App() {
                                                             placeholder="0.00"
                                                         />
                                                     </td>
-                                                    <td className="td" />
-                                                    <td className="td" />
+                                                    <td className="td"></td>
+                                                    <td className="td"></td>
                                                 </tr>
                                                 <tr className="extra-row-bg">
-                                                    <td className="td" />
                                                     <td className="td"></td>
                                                     <td className="td">
                                                         <input
@@ -640,8 +641,8 @@ export default function App() {
                                                             placeholder="0.00"
                                                         />
                                                     </td>
-                                                    <td className="td" />
-                                                    <td className="td" />
+                                                    <td className="td"></td>
+                                                    <td className="td"></td>
                                                 </tr>
                                             </>
                                         )}
