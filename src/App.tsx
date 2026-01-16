@@ -193,7 +193,7 @@ body {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  min-width: 450px; /* 테이블 최소 너비 설정으로 모바일 스크롤 유도 */
+  min-width: 400px; /* 테이블 최소 너비 설정으로 모바일 스크롤 유도 */
 }
 
 .th {
@@ -486,66 +486,152 @@ export default function App() {
                         <table className="table">
                             <thead>
                                 <tr>
-                                    <th className="th" style={{ width: 40, textAlign: 'center' }}>#</th>
+                                    <th className="th" rowspan="2" style={{ width: 40, textAlign: 'center' }}>#</th>
                                     <th className="th">강의실<br/>가로</th>
                                     <th className="th">강의실<br/>세로</th>
+                                    <th className="th" rowspan="2" style={{ width: 100, textAlign: 'right' }}>합계<br/>(㎡)</th>
+                                    <th className="th" rowspan="2" style={{ width: 50, textAlign: 'center' }}>펼침</th>
+                                </tr>
+                                <tr>
                                     <th className="th">기둥<br/>가로</th>
                                     <th className="th">기둥<br/>세로</th>
-                                    <th className="th" style={{ width: 100, textAlign: 'right' }}>합계<br/>(㎡)</th>
-                                    <th className="th" style={{ width: 50, textAlign: 'center' }}>펼침</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {rows.map((r, ri) => (
                                     <React.Fragment key={ri}>
                                         <tr>
-                                            <td className="td" style={{ textAlign: 'center', color: 'var(--muted)', fontSize: '0.875rem' }}>{ri + 1}</td>
-                                            {(["main.w", "main.h", "post.w", "post.h"] as const).map((k) => (
-                                                <td key={k} className="td">
-                                                    <input
-                                                        className="input"
-                                                        type="text"
-                                                        inputMode="decimal"
-                                                        value={(r[k.split(".")[0] as keyof RoomRow] as Pair)[k.split(".")[1] as "w" | "h"]}
-                                                        onChange={(e) => onChangeNumeric(e, ri, k)}
-                                                        onBlur={() => onBlurNumeric(ri, k)}
-                                                        onKeyDown={(e) => onKeyDown(e, ri, k)}
-                                                        ref={(el) => { if (el) refs.current.set(`${ri}:${k}`, el); }}
-                                                        placeholder="0.00"
-                                                    />
-                                                </td>
-                                            ))}
-                                            <td className="td" style={{ textAlign: 'right' }}>
+                                            <td className="td" rowspan="2" style={{ textAlign: 'center', color: 'var(--muted)', fontSize: '0.875rem' }}>{ri + 1}</td>
+                                            <td className="td">
+                                                <input
+                                                    className="input"
+                                                    type="text"
+                                                    inputMode="decimal"
+                                                    value={r.main.w}
+                                                    onChange={(e) => onChangeNumeric(e, ri, "main.w")}
+                                                    onBlur={() => onBlurNumeric(ri, "main.w")}
+                                                    onKeyDown={(e) => onKeyDown(e, ri, "main.w")}
+                                                    ref={(el) => { if (el) refs.current.set(`${ri}:main.w`, el); }}
+                                                    placeholder="0.00"
+                                                />
+                                            </td>
+                                            <td className="td">
+                                                <input
+                                                    className="input"
+                                                    type="text"
+                                                    inputMode="decimal"
+                                                    value={r.main.h}
+                                                    onChange={(e) => onChangeNumeric(e, ri, "main.h")}
+                                                    onBlur={() => onBlurNumeric(ri, "main.h")}
+                                                    onKeyDown={(e) => onKeyDown(e, ri, "main.h")}
+                                                    ref={(el) => { if (el) refs.current.set(`${ri}:main.h`, el); }}
+                                                    placeholder="0.00"
+                                                />
+                                            </td>
+                                            <td className="td" rowspan="2" style={{ textAlign: 'right' }}>
                                                 <div className="readonly">{areas[ri].toFixed(2)}</div>
                                             </td>
-                                            <td className="td" style={{ textAlign: 'center' }}>
+                                            <td className="td" rowspan="2" style={{ textAlign: 'center' }}>
                                                 <button className="chev-btn" onClick={() => toggleExpanded(ri)} aria-label="행 펼치기/접기">
                                                     {r.expanded ? "▾" : "▸"}
                                                 </button>
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <td className="td">
+                                                <input
+                                                    className="input"
+                                                    type="text"
+                                                    inputMode="decimal"
+                                                    value={r.post.w}
+                                                    onChange={(e) => onChangeNumeric(e, ri, "post.w")}
+                                                    onBlur={() => onBlurNumeric(ri, "post.w")}
+                                                    onKeyDown={(e) => onKeyDown(e, ri, "post.w")}
+                                                    ref={(el) => { if (el) refs.current.set(`${ri}:post.w`, el); }}
+                                                    placeholder="0.00"
+                                                />
+                                            </td>
+                                            <td className="td">
+                                                <input
+                                                    className="input"
+                                                    type="text"
+                                                    inputMode="decimal"
+                                                    value={r.post.h}
+                                                    onChange={(e) => onChangeNumeric(e, ri, "post.h")}
+                                                    onBlur={() => onBlurNumeric(ri, "post.h")}
+                                                    onKeyDown={(e) => onKeyDown(e, ri, "post.h")}
+                                                    ref={(el) => { if (el) refs.current.set(`${ri}:post.h`, el); }}
+                                                    placeholder="0.00"
+                                                />
+                                            </td>
+                                        </tr>
                                         {r.expanded && (
-                                            <tr className="extra-row-bg">
-                                                <td className="td" />
-                                                <td className="td" style={{ textAlign: 'center', color: 'var(--muted)' }}>+</td>
-                                                {(["extraMain.w", "extraMain.h", "extraPost.w", "extraPost.h"] as const).map((k) => (
-                                                    <td key={k} className="td">
+                                            <>
+                                                <tr className="extra-row-bg">
+                                                    <td className="td" />
+                                                    <td className="td" style={{ textAlign: 'center', color: 'var(--muted)' }}>+</td>
+                                                    <td className="td">
                                                         <input
                                                             className="input"
                                                             type="text"
                                                             inputMode="decimal"
-                                                            value={(r[k.split(".")[0] as keyof RoomRow] as Pair)[k.split(".")[1] as "w" | "h"]}
-                                                            onChange={(e) => onChangeNumeric(e, ri, k)}
-                                                            onBlur={() => onBlurNumeric(ri, k)}
-                                                            onKeyDown={(e) => onKeyDown(e, ri, k)}
-                                                            ref={(el) => { if (el) refs.current.set(`${ri}:${k}`, el); }}
+                                                            value={r.extraMain.w}
+                                                            onChange={(e) => onChangeNumeric(e, ri, "extraMain.w")}
+                                                            onBlur={() => onBlurNumeric(ri, "extraMain.w")}
+                                                            onKeyDown={(e) => onKeyDown(e, ri, "extraMain.w")}
+                                                            ref={(el) => { if (el) refs.current.set(`${ri}:extraMain.w`, el); }}
                                                             placeholder="0.00"
                                                         />
                                                     </td>
-                                                ))}
-                                                <td className="td" />
-                                                <td className="td" />
-                                            </tr>
+                                                    <td className="td">
+                                                        <input
+                                                            className="input"
+                                                            type="text"
+                                                            inputMode="decimal"
+                                                            value={r.extraMain.h}
+                                                            onChange={(e) => onChangeNumeric(e, ri, "extraMain.h")}
+                                                            onBlur={() => onBlurNumeric(ri, "extraMain.h")}
+                                                            onKeyDown={(e) => onKeyDown(e, ri, "extraMain.h")}
+                                                            ref={(el) => { if (el) refs.current.set(`${ri}:extraMain.h`, el); }}
+                                                            placeholder="0.00"
+                                                        />
+                                                    </td>
+                                                    <td className="td" />
+                                                    <td className="td" />
+                                                </tr>
+                                                <tr className="extra-row-bg">
+                                                    <td className="td" />
+                                                    <td className="td" style={{ textAlign: 'center', color: 'var(--muted)' }}>+</td>
+                                                    <td className="td">
+                                                        <input
+                                                            className="input"
+                                                            type="text"
+                                                            inputMode="decimal"
+                                                            value={r.extraPost.w}
+                                                            onChange={(e) => onChangeNumeric(e, ri, "extraPost.w")}
+                                                            onBlur={() => onBlurNumeric(ri, "extraPost.w")}
+                                                            onKeyDown={(e) => onKeyDown(e, ri, "extraPost.w")}
+                                                            ref={(el) => { if (el) refs.current.set(`${ri}:extraPost.w`, el); }}
+                                                            placeholder="0.00"
+                                                        />
+                                                    </td>
+                                                    <td className="td">
+                                                        <input
+                                                            className="input"
+                                                            type="text"
+                                                            inputMode="decimal"
+                                                            value={r.extraPost.h}
+                                                            onChange={(e) => onChangeNumeric(e, ri, "extraPost.h")}
+                                                            onBlur={() => onBlurNumeric(ri, "extraPost.h")}
+                                                            onKeyDown={(e) => onKeyDown(e, ri, "extraPost.h")}
+                                                            ref={(el) => { if (el) refs.current.set(`${ri}:extraPost.h`, el); }}
+                                                            placeholder="0.00"
+                                                        />
+                                                    </td>
+                                                    <td className="td" />
+                                                    <td className="td" />
+                                                </tr>
+                                            </>
                                         )}
                                     </React.Fragment>
                                 ))}
